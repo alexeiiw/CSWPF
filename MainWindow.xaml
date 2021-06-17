@@ -1,0 +1,202 @@
+﻿<mah:MetroWindow x:Class="ActualizarDatosEquipo.MainWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ActualizarDatosEquipo"
+        mc:Ignorable="d"
+        Title="DATOS DE EQUIPOS V1 Desarrollo" Height="475" Width="800" ShowMaxRestoreButton="False"
+        Loaded="OnLoad">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <!--Define botones de menu-->
+            <Button Name="btnActualizar" Content="Actualizar" IsEnabled="False" Click="btnActualizar_Click"></Button>
+            <Button Name="btnCancelar" Content="Cancelar" IsEnabled="False" Click="btnCancelar_Click"></Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        <TabControl x:Name="tabControl">
+            <TabItem Header="Datos Equipo" Name="tabDatos">
+                <Grid Background="#FFE5E5E5">
+                    <!--Cabecera para la busqueda-->
+                    <Label x:Name="label" Content="Serie del Equipo:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="txtSerie" HorizontalAlignment="Left" Margin="125,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="0" CharacterCasing="Upper"/>
+                    <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top" Click="btnBuscar_Click" TabIndex="1"/>
+
+                    <!--Detalle de la cabecera de campos-->
+                    <Label x:Name="label2" Content="No. Contrato:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label x:Name="lblContrato" Content="4646" HorizontalAlignment="Left" Margin="125,50,0,0" VerticalAlignment="Top" FontSize="16" Visibility="Hidden" Foreground="Navy"/>
+                    <Label x:Name="label2_Copy" Content="Cliente:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label x:Name="lblCliente" Content="CONSULTORIA TECNICA S.A." HorizontalAlignment="Left" Margin="125,80,0,0" VerticalAlignment="Top" FontSize="16" Visibility="Hidden" Foreground="Navy"/>
+
+                    <!--Datos de la Bitacora-->
+                    <Label x:Name="lblSistema" Content="Sistema" Margin="500,10,0,0" FontWeight="Bold" Visibility="Hidden" Foreground="MediumBlue"></Label>
+                    <Label x:Name="lblFechaRegistro" Content="Fecha Registro" Margin="500,25,0,0" FontWeight="Bold" Visibility="Hidden" Foreground="MediumBlue"></Label>
+                    <Label x:Name="lblFechaActual" Content="Fecha Actual" Margin="500,40,0,0" FontWeight="Bold" Visibility="Hidden" Foreground="MediumBlue"></Label>
+                    <Label x:Name="lblUsuario" Content="Usuario" Margin="500,55,0,0" FontWeight="Bold" Visibility="Hidden" Foreground="MediumBlue"></Label>
+                    <Label x:Name="lblAprobado" Content="Aprobado" Margin="500,70,0,0" FontWeight="Bold" Visibility="Hidden" Foreground="MediumBlue"></Label>
+                    <Label x:Name="lblTransaccion" Content="Transaccion" Margin="500,85,0,0" FontWeight="Bold" Visibility="Hidden" Foreground="MediumBlue"></Label>
+
+                    <!--Detalle del formulario-->
+                    <Label x:Name="label1" Content="Nombre Impresora:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtNombreImpresora" HorizontalAlignment="Left" Margin="130,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="2" CharacterCasing="Upper" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    <Label x:Name="label1_Copy" Content="Dirección IP:" HorizontalAlignment="Left" Margin="530,140,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDireccionIp" HorizontalAlignment="Left" Margin="650,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4" IsEnabled="False"/>
+                    <Label x:Name="label1_Copy1" Content="Mac Address:" HorizontalAlignment="Left" Margin="270,140,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtMacAddress" HorizontalAlignment="Left" Margin="380,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="3" CharacterCasing="Upper" IsEnabled="False"/>
+
+                    <Label x:Name="label1_Copy2" Content="ID por el Cliente:" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtIdCliente" HorizontalAlignment="Left" Margin="130,180,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="5" CharacterCasing="Upper" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    <Label x:Name="label1_Copy3" Content="Centro Comercial:" HorizontalAlignment="Left" Margin="530,180,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtCentroComercial" HorizontalAlignment="Left" Margin="650,180,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="7" CharacterCasing="Upper" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    <Label x:Name="label1_Copy4" Content="Número Agencia:" HorizontalAlignment="Left" Margin="270,180,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtNumeroAgencia" HorizontalAlignment="Left" Margin="380,180,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="6" IsEnabled="False"/>
+
+                    <Label x:Name="label1_Copy5" Content="Área:" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtArea" HorizontalAlignment="Left" Margin="130,220,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="8" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    <Label x:Name="label1_Copy6" Content="Agencia-Depto:" HorizontalAlignment="Left" Margin="530,220,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtAgenciaDepto" HorizontalAlignment="Left" Margin="650,220,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="10" CharacterCasing="Upper" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    <Label x:Name="label1_Copy7" Content="Zona Geográfica:" HorizontalAlignment="Left" Margin="270,220,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtZonaGeografica" HorizontalAlignment="Left" Margin="380,220,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="9" IsEnabled="False"/>
+
+                    <Label x:Name="label1_Copy8" Content="Encargado:" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtEncargado" HorizontalAlignment="Left" Margin="130,260,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="11" CharacterCasing="Upper" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    <Label x:Name="label1_Copy9" Content="Teléfono Encargado:" HorizontalAlignment="Left" Margin="270,260,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtTelefonoEncargado" HorizontalAlignment="Left" Margin="380,260,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="13" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+                    
+                    <Button x:Name="btnObtenerDireccion" Content="Dirección" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Click="btnObtenerDireccion_Click" IsEnabled="False"/>
+                    <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="130,300,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="635" TabIndex="12" CharacterCasing="Upper" IsEnabled="False" Visibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+
+                    <Label x:Name="label1_Copy11" Content="Volumen B/N:" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="txtVolumenBn" HorizontalAlignment="Left" Margin="130,300,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="14" PreviewTextInput="NumberValidationTextBox" IsEnabled="False" Visibility="Hidden"/>
+                    <Label x:Name="label1_Copy12" Content="Volumen Color:" HorizontalAlignment="Left" Margin="530,300,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="txtVolumenColor" HorizontalAlignment="Left" Margin="650,300,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="16" PreviewTextInput="NumberValidationTextBox" IsEnabled="False" Visibility="Hidden"/>
+                    <Label x:Name="label1_Copy10" Content="Cuota Fija:" HorizontalAlignment="Left" Margin="270,300,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="txtCuotaFija" HorizontalAlignment="Left" Margin="380,300,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="15" PreviewTextInput="NumberValidationTextBox" IsEnabled="False" Visibility="Hidden"/>
+
+                    <Label x:Name="label1_Copy66" Content="Comentarios:" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtComentarios" HorizontalAlignment="Left" Margin="130,340,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="635" TabIndex="17" CharacterCasing="Upper" IsEnabled="False"/>
+
+                    <Label x:Name="lblComentarios" Content="Comentarios:" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" FontWeight="Bold" Visibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="25" Foreground="Red"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Histórico" Name="tabHistorico" IsEnabled="False">
+                <Grid Name="MCGrid" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="Nombre Impresora" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="Dirección" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="Agencia-Depto." Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="Fecha Registro" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="Sistema" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="5" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0"></TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2"></TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">S/F</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="4">SISCON</TextBlock>
+
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0"></TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">CIUDAD</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">9</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">S/F</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="4">SCON</TextBlock>
+
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="0">IMPRESORA 1</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="2">PRIMER</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="3">20/05/2021</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="4">APP</TextBlock>
+                    <Button Name="boton1" Content="AUTORIZAR" Grid.Row="3" Grid.Column="5"></Button>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Pendientes" Name="tabPendientes" IsEnabled="False">
+                <Grid Name="Pendientes" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="Nombre Impresora" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="Dirección" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="Agencia-Depto." Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="Fecha Registro" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0">IMPRESORA 2</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">EDIFICIO EL PATIO</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2">SIN AGENCIA</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">24/05/2021</TextBlock>
+                    <Button Name="boton99" Content="AUTORIZAR" Grid.Row="1" Grid.Column="4"></Button>
+
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0">IMPRESORA 1</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">PRIMER</TextBlock>
+                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">20/05/2021</TextBlock>
+                    <Button Name="boton98" Content="AUTORIZAR" Grid.Row="2" Grid.Column="4"></Button>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Dirección" Name="tabDireccion" IsEnabled="False">
+                <Grid Background="#FFE5E5E5">
+                    <!--Detalle del formulario-->
+                    <ComboBox x:Name= "cmbDepartamento" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left" SelectionChanged="cmbDepartamento_SelectionChanged" TabIndex="1">
+                        <ComboBoxItem IsSelected="True">Departamentos</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox x:Name= "cmbCiudad" Margin="180,10,0,0" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left" TabIndex="2">
+                        <ComboBoxItem IsSelected="True">Ciudades</ComboBoxItem>
+                    </ComboBox>
+                    <Label x:Name="label102" Content="Zona: " HorizontalAlignment="Left" Margin="350,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtZona" HorizontalAlignment="Left" Margin="395,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" PreviewTextInput="NumberValidationTextBox" TabIndex="3"/>
+                    <Button x:Name="btnCompletar" Content="Completar" HorizontalAlignment="Left" Margin="480,10,0,0" VerticalAlignment="Top" Click="btnCompletar_Click" TabIndex="5"/>
+                    <Label x:Name="label103" Content="Dirección: " HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDireccion1" HorizontalAlignment="Left" Margin="80,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" CharacterCasing="Upper" TabIndex="4"/>
+                    <Label x:Name="label104" Content="Dirección Completa: " HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDireccion2" HorizontalAlignment="Left" Margin="140,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" Height="75" IsEnabled="False" CharacterCasing="Upper"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Seguridad" Name="tabSeguridad" IsEnabled="True">
+                <Grid Background="#FFE5E5E5">
+                    <!--Detalle del formulario-->
+                    <Label x:Name="label100" Content="Usuario:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Margin="80,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label101" Content="Contraseña:" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top"/>
+                    <PasswordBox x:Name="txtClave" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="120" PasswordChar="*"/>
+                    <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" Click="btnLogin_Click"/>
+                    <Label x:Name="lblnombreusuario" Content="Nombre Usuario:" HorizontalAlignment="Left" Margin="520,10,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Visibility="Hidden" Foreground="Green"/>
+                    <Label x:Name="lblareausuario" Content="Area Usuario:" HorizontalAlignment="Left" Margin="520,30,0,0" VerticalAlignment="Top" FontWeight="SemiBold" Visibility="Hidden" Foreground="Green"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</mah:MetroWindow>

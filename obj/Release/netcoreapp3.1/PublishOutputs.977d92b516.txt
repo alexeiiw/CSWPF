@@ -1,0 +1,16 @@
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\ActualizarDatosEquipo.exe
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\ActualizarDatosEquipo.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\ActualizarDatosEquipo.deps.json
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\ActualizarDatosEquipo.runtimeconfig.json
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\ActualizarDatosEquipo.pdb
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\ControlzEx.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\MahApps.Metro.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\Microsoft.Xaml.Behaviors.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\System.Data.SqlClient.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\System.Text.Json.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\de\MahApps.Metro.resources.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\runtimes\win-arm64\native\sni.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\runtimes\win-x64\native\sni.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\runtimes\win-x86\native\sni.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\infoagarcia\Documents\Canella\Proyectos\ActualizarDatosEquipo\Publicado\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
