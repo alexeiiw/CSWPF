@@ -55,6 +55,7 @@ namespace ActualizarDatosEquipo
         int Departamento = 0; // 13 Servicio Tecnico, 2 Soluciones
 
         //string Scon = "[128.1.5.79].scon.dbo."; // produccion
+        // Esta es una prueba para el git hub
         string Scon = "Scon_06062021.dbo."; // desarrollo
 
         public MainWindow()
