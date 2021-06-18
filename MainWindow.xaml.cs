@@ -55,7 +55,6 @@ namespace ActualizarDatosEquipo
         int Departamento = 0; // 13 Servicio Tecnico, 2 Soluciones
 
         //string Scon = "[128.1.5.79].scon.dbo."; // produccion
-        // Esta es una prueba para el git hub
         string Scon = "Scon_06062021.dbo."; // desarrollo
 
         public MainWindow()
@@ -171,6 +170,7 @@ namespace ActualizarDatosEquipo
             txtVolumenBn.Text = "";
             txtDireccion.Text = "";
             txtVolumenColor.Text = "";
+            txtNivel.Text = "";
             txtComentarios.Text = "";
             lblContrato.Content = "";
             lblCliente.Content = "";
@@ -207,6 +207,7 @@ namespace ActualizarDatosEquipo
             txtVolumenColor.IsEnabled = false;
             txtVolumenBn.IsEnabled = false;
             txtCuotaFija.IsEnabled = false;
+            txtNivel.IsEnabled = false;
 
             // Oculta los labels de bitacora
             lblAprobado.Visibility = Visibility.Hidden;
@@ -1002,6 +1003,8 @@ namespace ActualizarDatosEquipo
                     Obtener_Pendientes();
 
                     Limpiar_Formulario();
+
+                    Aplicar_Permisos();
                 }
             }
             else
@@ -1023,7 +1026,7 @@ namespace ActualizarDatosEquipo
                 command.Connection = connUtil;
 
                 //string strSql = "update COT_DATOSEQUIPOS_LOG set APROBADO = 1, fecha_actualizacion=getdate() where TRANSACCION = "+intTransaccion+" and SERIE = '"+txtSerie.Text+"' and SISTEMA = 'APP'";
-                string strSql = "update COT_DATOSEQUIPOS_LOG set APROBADO = 1, fecha_actualizacion=getdate() where TRANSACCION = " + intTransaccion + "' and SISTEMA = 'APP'"; // Puede haber otra transaccion con el excel?
+                string strSql = "update COT_DATOSEQUIPOS_LOG set APROBADO = 1, fecha_actualizacion=getdate() where TRANSACCION = " + intTransaccion + " and SISTEMA = 'APP'"; // Puede haber otra transaccion con el excel?
 
                 command.CommandText = strSql;
                 int intValida = command.ExecuteNonQuery();
@@ -1050,7 +1053,7 @@ namespace ActualizarDatosEquipo
                 strSqlAnteriorAPP += "','" + txtArea.Text + "','" + txtZonaGeografica.Text + "','" + txtAgenciaDepto.Text + "',";
                 strSqlAnteriorAPP += "'" + txtEncargado.Text + "','" + txtCuotaFija.Text + "','" + txtTelefonoEncargado.Text;
                 strSqlAnteriorAPP += "','" + txtVolumenBn.Text + "','" + txtDireccion.Text+ "','" + txtVolumenColor.Text;
-                strSqlAnteriorAPP += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'" + txtComentarios.Text + "','APP','" + txtSerie.Text + "')";
+                strSqlAnteriorAPP += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'" + txtComentarios.Text + "','APP','" + txtSerie.Text + "', '" + txtNivel.Text + "')";
 
                 command.CommandText = strSqlAnteriorAPP;
                 int intValida = command.ExecuteNonQuery();
@@ -1092,7 +1095,7 @@ namespace ActualizarDatosEquipo
                     command.Connection = connUtil;
 
                     string strSqlAnteriorSCON = "insert into COT_DATOSEQUIPOS_LOG values ("+ intTransaccion.ToString() + ",'','','','','','','','"+dt.Rows[0]["Zona"].ToString()+"','"+dt.Rows[0]["Agencia/Depto"].ToString()+"',";
-                    strSqlAnteriorSCON += "'"+dt.Rows[0]["Contacto"].ToString()+"','','"+dt.Rows[0]["Telefono"].ToString()+"','','"+ dt.Rows[0]["Dirección"].ToString() + "','',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'','SCON','"+txtSerie.Text+"')";
+                    strSqlAnteriorSCON += "'"+dt.Rows[0]["Contacto"].ToString()+"','','"+dt.Rows[0]["Telefono"].ToString()+"','','"+ dt.Rows[0]["Dirección"].ToString() + "','',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'','SCON','"+txtSerie.Text+"',NULL)";
 
                     command.CommandText = strSqlAnteriorSCON;
                     int intValida = command.ExecuteNonQuery();
@@ -1120,7 +1123,7 @@ namespace ActualizarDatosEquipo
                 strSqlAnteriorSISCON += "','"+dtDatosAnterior.Rows[0]["area"].ToString()+"','"+dtDatosAnterior.Rows[0]["zona_geografica"].ToString()+"','"+dtDatosAnterior.Rows[0]["agencia_depto"].ToString()+"',";
                 strSqlAnteriorSISCON += "'"+dtDatosAnterior.Rows[0]["encargado_equipo"].ToString()+"','"+dtDatosAnterior.Rows[0]["cuota_fija"].ToString()+"','"+dtDatosAnterior.Rows[0]["tel_encargado_equipo"].ToString();
                 strSqlAnteriorSISCON += "','"+dtDatosAnterior.Rows[0]["volumen_bn"].ToString()+"','"+dtDatosAnterior.Rows[0]["direccion_equi_empresa"].ToString()+"','"+dtDatosAnterior.Rows[0]["volumen_color"].ToString();
-                strSqlAnteriorSISCON += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'"+txtComentarios.Text+"','SISCON','"+txtSerie.Text+"')";
+                strSqlAnteriorSISCON += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'"+txtComentarios.Text+"','SISCON','"+txtSerie.Text+"','" + dtDatosAnterior.Rows[0]["nivel"].ToString() + "')";
 
                 command.CommandText = strSqlAnteriorSISCON;
                 int intValida = command.ExecuteNonQuery();
@@ -1134,12 +1137,14 @@ namespace ActualizarDatosEquipo
         private void Completar_Direccion()
         {
             // Completa la dirección
-            txtDireccion2.Text = txtDireccion1.Text + " Zona " + txtZona.Text + cmbCiudad.SelectedItem.ToString().Substring(37, (cmbCiudad.SelectedItem.ToString().Length-37) ) + " " + cmbDepartamento.SelectedItem.ToString();
+            if (txtNivelGeografico.Text == "") { txtDireccion2.Text = txtDireccion1.Text + " Zona " + txtZona.Text + cmbCiudad.SelectedItem.ToString().Substring(37, (cmbCiudad.SelectedItem.ToString().Length - 37)) + " " + cmbDepartamento.SelectedItem.ToString(); }
+            else { txtDireccion2.Text = txtDireccion1.Text + " Zona " + txtZona.Text + " Nivel " + txtNivelGeografico.Text + cmbCiudad.SelectedItem.ToString().Substring(37, (cmbCiudad.SelectedItem.ToString().Length - 37)) + " " + cmbDepartamento.SelectedItem.ToString(); }
 
             MessageBox.Show("Dirección completa!", "Datos", MessageBoxButton.OK, MessageBoxImage.Information);
 
             txtDireccion.Text = txtDireccion2.Text;
             txtZonaGeografica.Text = txtZona.Text;
+            txtNivel.Text = txtNivelGeografico.Text;
 
             tabDatos.Focus();
         }
@@ -1230,6 +1235,7 @@ namespace ActualizarDatosEquipo
                     txtCentroComercial.IsEnabled = true;
                     txtArea.IsEnabled = true;
                     txtZonaGeografica.IsEnabled = true;
+                    txtNivel.IsEnabled = true;
                     txtAgenciaDepto.IsEnabled = true;
                     txtEncargado.IsEnabled = true;
                     txtTelefonoEncargado.IsEnabled = true;
@@ -1332,7 +1338,7 @@ namespace ActualizarDatosEquipo
                     strSqlSISCON += "ID_EQUIPO_CLIENTE='"+ dt.Rows[0]["id_cliente"].ToString() + "', NUMERO_AGENCIA='"+dt.Rows[0]["numero_agencia"].ToString()+"',CENTRO_COMERCIAL='"+ dt.Rows[0]["centro_comercial"].ToString() + "',";
                     strSqlSISCON += "AREA='"+ dt.Rows[0]["area"].ToString() + "', ZONA_GEOGRAFICA='"+ dt.Rows[0]["zona_geografica"].ToString() + "', AGENCIA_DEPTO='"+ dt.Rows[0]["agencia_departamento"].ToString() + "',";
                     strSqlSISCON += "ENCARGADO_EQUIPO='"+ dt.Rows[0]["encargado"].ToString() + "', CUOTA_FIJA="+ fltCuota.ToString() + ", TEL_ENCARGADO_EQUIPO='"+ dt.Rows[0]["telefono_encargado"].ToString() + "',";
-                    strSqlSISCON += "VOLUMEN_BN="+fltVolumenBN.ToString()+", DIRECCION_EQUI_EMPRESA='"+ dt.Rows[0]["direccion"].ToString() + "',VOLUMEN_COLOR="+ fltVolumenColor.ToString();
+                    strSqlSISCON += "VOLUMEN_BN="+fltVolumenBN.ToString()+", DIRECCION_EQUI_EMPRESA='"+ dt.Rows[0]["direccion"].ToString() + "',VOLUMEN_COLOR="+ fltVolumenColor.ToString() + ",NIVEL='" + dt.Rows[0]["nivel"].ToString() + "'";
                     strSqlSISCON += " where NUMERO_SERIE = '"+txtSerie.Text+"' and ESTATUS_ARTICULO = 1";
 
                     command.CommandText = strSqlSISCON;
@@ -1435,6 +1441,8 @@ namespace ActualizarDatosEquipo
                 txtDireccion1.Text = txtDireccion.Text;
                 txtComentarios.Text = dt.Rows[0]["comentarios"].ToString();
                 txtComentarios.IsEnabled = false;
+                txtNivel.Text = dt.Rows[0]["nivel"].ToString();
+                txtNivel.IsEnabled = false;
                 txtSerie.Text = dt.Rows[0]["serie"].ToString();
 
                 // Agrega los datos de la bicatora
@@ -1576,7 +1584,7 @@ namespace ActualizarDatosEquipo
                 if (Validar_ProblemasSISCON()) { MessageBox.Show("El número de Serie tiene problemas en SISCON, no se actualizarán los datos!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error); }
 
                 string strSql = @"select DET.CONTRATO_NO, ENC.NOMBRE_CLIENTE, DET.NOMBRE_EQUIPO, DET.MAC_ADDRESS, DET.DIRECCION_IP, DET.ID_EQUIPO_CLIENTE, DET.NUMERO_AGENCIA, DET.CENTRO_COMERCIAL, DET.AREA, DET.ZONA_GEOGRAFICA, 
-                            DET.AGENCIA_DEPTO, DET.ENCARGADO_EQUIPO, DET.TEL_ENCARGADO_EQUIPO, DET.CUOTA_FIJA, DET.VOLUMEN_BN, DET.VOLUMEN_COLOR, DET.DIRECCION_EQUI_EMPRESA
+                            DET.AGENCIA_DEPTO, DET.ENCARGADO_EQUIPO, DET.TEL_ENCARGADO_EQUIPO, DET.CUOTA_FIJA, DET.VOLUMEN_BN, DET.VOLUMEN_COLOR, DET.DIRECCION_EQUI_EMPRESA, DET.NIVEL 
                             from COT_CONTRATOS_DET_DESPACHO DET, COT_CONTRATOS_ENC ENC
                             where ENC.CONTRATO_NO = DET.CONTRATO_NO
                             and DET.NUMERO_SERIE = '";
@@ -1620,6 +1628,7 @@ namespace ActualizarDatosEquipo
                     txtVolumenBn.Text = dt.Rows[0]["volumen_bn"].ToString();
                     txtVolumenColor.Text = dt.Rows[0]["volumen_color"].ToString();
                     txtDireccion.Text = dt.Rows[0]["direccion_equi_empresa"].ToString();
+                    txtNivel.Text = dt.Rows[0]["nivel"].ToString();
                     txtDireccion1.Text = txtDireccion.Text;
 
                     // Habilita los objetos

@@ -66,7 +66,9 @@
                     <TextBox x:Name="txtEncargado" HorizontalAlignment="Left" Margin="130,260,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="11" CharacterCasing="Upper" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
                     <Label x:Name="label1_Copy9" Content="Teléfono Encargado:" HorizontalAlignment="Left" Margin="270,260,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtTelefonoEncargado" HorizontalAlignment="Left" Margin="380,260,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="13" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
-                    
+                    <Label x:Name="label1_Copy15" Content="Nivel:" HorizontalAlignment="Left" Margin="530,260,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtNivel" HorizontalAlignment="Left" Margin="650,260,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="13" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
+
                     <Button x:Name="btnObtenerDireccion" Content="Dirección" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Click="btnObtenerDireccion_Click" IsEnabled="False"/>
                     <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="130,300,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="635" TabIndex="12" CharacterCasing="Upper" IsEnabled="False" Visibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="25"/>
 
@@ -174,13 +176,18 @@
                     <ComboBox x:Name= "cmbCiudad" Margin="180,10,0,0" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left" TabIndex="2">
                         <ComboBoxItem IsSelected="True">Ciudades</ComboBoxItem>
                     </ComboBox>
-                    <Label x:Name="label102" Content="Zona: " HorizontalAlignment="Left" Margin="350,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtZona" HorizontalAlignment="Left" Margin="395,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" PreviewTextInput="NumberValidationTextBox" TabIndex="3"/>
-                    <Button x:Name="btnCompletar" Content="Completar" HorizontalAlignment="Left" Margin="480,10,0,0" VerticalAlignment="Top" Click="btnCompletar_Click" TabIndex="5"/>
-                    <Label x:Name="label103" Content="Dirección: " HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtDireccion1" HorizontalAlignment="Left" Margin="80,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" CharacterCasing="Upper" TabIndex="4"/>
-                    <Label x:Name="label104" Content="Dirección Completa: " HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtDireccion2" HorizontalAlignment="Left" Margin="140,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" Height="75" IsEnabled="False" CharacterCasing="Upper"/>
+                    
+                    <Label x:Name="label102" Content="Zona: " HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtZona" HorizontalAlignment="Left" Margin="60,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" PreviewTextInput="NumberValidationTextBox" TabIndex="3"/>
+                    <Label x:Name="label106" Content="Nivel: " HorizontalAlignment="Left" Margin="140,50,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtNivelGeografico" HorizontalAlignment="Left" Margin="190,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" PreviewTextInput="NumberValidationTextBox" TabIndex="4"/>
+
+                    <Button x:Name="btnCompletar" Content="Completar" HorizontalAlignment="Left" Margin="480,50,0,0" VerticalAlignment="Top" Click="btnCompletar_Click" TabIndex="6"/>
+                    
+                    <Label x:Name="label103" Content="Dirección: " HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDireccion1" HorizontalAlignment="Left" Margin="80,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" CharacterCasing="Upper" TabIndex="5"/>
+                    <Label x:Name="label104" Content="Dirección Completa: " HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDireccion2" HorizontalAlignment="Left" Margin="140,130,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="410" Height="75" IsEnabled="False" CharacterCasing="Upper"/>
                 </Grid>
             </TabItem>
             
