@@ -42,20 +42,20 @@ namespace ActualizarDatosEquipo
         // Define objetos globales
         DataTable dtDatosAnterior = new DataTable();
 
-        string connStringSISCON = "data source=128.1.200.136;initial catalog=Canella_SISCON;persist security info=True;user id=usrsap;password=C@nella20$";
+        string connStringSISCON = "data source=128.1.200.167;initial catalog=Canella_SISCON;persist security info=True;user id=usrsap;password=C@nella20$";
 
         int intIdTransaccion = 0;
 
         bool Logueado = false;
 
-        AutorizaSISCON objAutorizaSISCON = new AutorizaSISCON("","");
+        AutorizaSISCON objAutorizaSISCON = new AutorizaSISCON("", "");
 
         string strSerie = "3ukrR6F5";
 
         int Departamento = 0; // 13 Servicio Tecnico, 2 Soluciones
 
-        //string Scon = "[128.1.5.79].scon.dbo."; // produccion
-        string Scon = "Scon_06062021.dbo."; // desarrollo
+        string SconConexion = "[128.1.5.79].scon.dbo."; // produccion
+        //string SconConexion = "Scon_06062021.dbo."; // desarrollo
 
         public MainWindow()
         {
@@ -67,8 +67,8 @@ namespace ActualizarDatosEquipo
         {
             // Valida que el número de serie de la aplicación sea válido
             if (Validar_SerieAPP()) { Iniciar_Pantalla(); }
-            else 
-            { 
+            else
+            {
                 MessageBox.Show("Su versión de aplicación ya no es válida, favor comunicarse con el Administrador!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error);
                 System.Windows.Application.Current.Shutdown();
             }
@@ -108,7 +108,7 @@ namespace ActualizarDatosEquipo
         // Metodo que valida la serie y la vigencia de la aplicacion
         private bool Validar_SerieAPP()
         {
-            string strSql = "select * from UTILS.dbo.SeriesAplicaciones where Serie = '"+strSerie+"'";
+            string strSql = "select * from UTILS.dbo.SeriesAplicaciones where Serie = '" + strSerie + "'";
 
             DataTable dt = new DataTable();
 
@@ -126,10 +126,10 @@ namespace ActualizarDatosEquipo
 
             if (dt.Rows.Count > 0)
             {
-                if (bool.Parse(dt.Rows[0]["Activo"].ToString())) 
+                if (bool.Parse(dt.Rows[0]["Activo"].ToString()))
                 {
                     Title = dt.Rows[0]["Aplicacion"].ToString() + " Versión: " + dt.Rows[0]["Version"].ToString() + " " + dt.Rows[0]["Ambiente"].ToString();
-                    return true; 
+                    return true;
                 }
                 else { return false; }
             }
@@ -187,7 +187,7 @@ namespace ActualizarDatosEquipo
             btnActualizar.IsEnabled = false;
             btnCancelar.IsEnabled = false;
             tabDireccion.IsEnabled = false;
-            tabPendientes.IsEnabled = false;    
+            tabPendientes.IsEnabled = false;
 
             // Deshabilita los textbox
             txtNombreImpresora.IsEnabled = false;
@@ -203,7 +203,7 @@ namespace ActualizarDatosEquipo
             txtTelefonoEncargado.IsEnabled = false;
             txtComentarios.IsEnabled = false;
             txtDireccion.IsEnabled = false;
-            btnObtenerDireccion.IsEnabled = false;  
+            btnObtenerDireccion.IsEnabled = false;
             txtVolumenColor.IsEnabled = false;
             txtVolumenBn.IsEnabled = false;
             txtCuotaFija.IsEnabled = false;
@@ -247,7 +247,7 @@ namespace ActualizarDatosEquipo
             strCuerpo += "Comentarios: " + txtComentarios.Text + "<br>";
             strCuerpo += "</font></td></tr><br/>";
 
-            return strCuerpo; 
+            return strCuerpo;
         }
 
         // Metodo para enviar correos electrónicos
@@ -291,7 +291,7 @@ namespace ActualizarDatosEquipo
         // Metodo para validar las credenciales
         private bool Validar_Credenciales()
         {
-            string strSql = "select * from DEF_USUARIOS where COD_USUARIO = '"+txtUsuario.Text+"'";
+            string strSql = "select * from DEF_USUARIOS where COD_USUARIO = '" + txtUsuario.Text + "'";
 
             DataTable dt = new DataTable();
 
@@ -309,7 +309,7 @@ namespace ActualizarDatosEquipo
 
             if (dt.Rows.Count > 0)
             {
-                if (dt.Rows[0]["contrasena"].ToString() == EncryptDecrypt(txtClave.Password)) 
+                if (dt.Rows[0]["contrasena"].ToString() == EncryptDecrypt(txtClave.Password))
                 {
                     // Asigna el departamento
                     Departamento = Convert.ToInt32(dt.Rows[0]["cod_departamento"].ToString());
@@ -329,7 +329,7 @@ namespace ActualizarDatosEquipo
                     lblareausuario.Visibility = Visibility.Visible;
 
                     // Si esta logueado retorna verdadero
-                    return true; 
+                    return true;
                 }
                 else { return false; }
             }
@@ -802,7 +802,7 @@ namespace ActualizarDatosEquipo
             DynamicGrid.Children.Add(txtBlock7);
 
             // Consulta para el detalle de los cambios
-            string strSql = "select * from COT_DATOSEQUIPOS_LOG where serie = '"+txtSerie.Text+"'";
+            string strSql = "select * from COT_DATOSEQUIPOS_LOG where serie = '" + txtSerie.Text + "'";
 
             DataTable dt = new DataTable();
 
@@ -825,13 +825,13 @@ namespace ActualizarDatosEquipo
                 {
                     // Create first Row    
                     TextBlock txtbTransaccion = new TextBlock();
-                    txtbTransaccion.Text = dt.Rows[i-1]["transaccion"].ToString();
+                    txtbTransaccion.Text = dt.Rows[i - 1]["transaccion"].ToString();
                     txtbTransaccion.FontSize = 12;
                     Grid.SetRow(txtbTransaccion, i);
                     Grid.SetColumn(txtbTransaccion, 0);
 
                     TextBlock txtbNombreEquipo = new TextBlock();
-                    txtbNombreEquipo.Text = dt.Rows[i-1]["nombre_impresora"].ToString();
+                    txtbNombreEquipo.Text = dt.Rows[i - 1]["nombre_impresora"].ToString();
                     txtbNombreEquipo.FontSize = 11;
                     txtbNombreEquipo.Width = 125;
                     txtbNombreEquipo.HorizontalAlignment = HorizontalAlignment.Left;
@@ -839,7 +839,7 @@ namespace ActualizarDatosEquipo
                     Grid.SetColumn(txtbNombreEquipo, 1);
 
                     TextBlock txtbDireccion = new TextBlock();
-                    txtbDireccion.Text = dt.Rows[i-1]["direccion"].ToString();
+                    txtbDireccion.Text = dt.Rows[i - 1]["direccion"].ToString();
                     txtbDireccion.FontSize = 11;
                     txtbDireccion.Width = 125;
                     txtbDireccion.HorizontalAlignment = HorizontalAlignment.Left;
@@ -847,7 +847,7 @@ namespace ActualizarDatosEquipo
                     Grid.SetColumn(txtbDireccion, 2);
 
                     TextBlock txtbAgenciaDepto = new TextBlock();
-                    txtbAgenciaDepto.Text = dt.Rows[i-1]["agencia_departamento"].ToString();
+                    txtbAgenciaDepto.Text = dt.Rows[i - 1]["agencia_departamento"].ToString();
                     txtbAgenciaDepto.FontSize = 11;
                     txtbAgenciaDepto.Width = 125;
                     txtbAgenciaDepto.HorizontalAlignment = HorizontalAlignment.Left;
@@ -855,7 +855,7 @@ namespace ActualizarDatosEquipo
                     Grid.SetColumn(txtbAgenciaDepto, 3);
 
                     TextBlock txtbFechaRegistro = new TextBlock();
-                    txtbFechaRegistro.Text = dt.Rows[i-1]["fecha_registro"].ToString();
+                    txtbFechaRegistro.Text = dt.Rows[i - 1]["fecha_registro"].ToString();
                     txtbFechaRegistro.FontSize = 11;
                     txtbFechaRegistro.Width = 125;
                     txtbFechaRegistro.HorizontalAlignment = HorizontalAlignment.Left;
@@ -863,7 +863,7 @@ namespace ActualizarDatosEquipo
                     Grid.SetColumn(txtbFechaRegistro, 4);
 
                     // Dibuja el boton de Ver
-                    switch (dt.Rows[i-1]["sistema"].ToString())
+                    switch (dt.Rows[i - 1]["sistema"].ToString())
                     {
 
                         case "APP":
@@ -909,9 +909,9 @@ namespace ActualizarDatosEquipo
                     }
 
                     // Si el registro es APP dibuja el boton, valida si el cambio fue parobado; de lo contrario dibuja el sistema al cual pertenece
-                    if (dt.Rows[i-1]["sistema"].ToString() == "APP")
+                    if (dt.Rows[i - 1]["sistema"].ToString() == "APP")
                     {
-                        if (dt.Rows[i-1]["aprobado"] is false)
+                        if (dt.Rows[i - 1]["aprobado"] is false)
                         {
                             Button btnAprobado = new Button();
                             btnAprobado.Content = "APROBAR";
@@ -927,7 +927,6 @@ namespace ActualizarDatosEquipo
                             TextBlock txtbAprobado = new TextBlock();
                             txtbAprobado.Text = "Cambio Aprobado ";
                             txtbAprobado.FontSize = 12;
-                            //txtbNombreEquipo.FontWeight = FontWeights.Bold;
                             Grid.SetRow(txtbAprobado, i);
                             Grid.SetColumn(txtbAprobado, 6);
 
@@ -1025,8 +1024,7 @@ namespace ActualizarDatosEquipo
 
                 command.Connection = connUtil;
 
-                //string strSql = "update COT_DATOSEQUIPOS_LOG set APROBADO = 1, fecha_actualizacion=getdate() where TRANSACCION = "+intTransaccion+" and SERIE = '"+txtSerie.Text+"' and SISTEMA = 'APP'";
-                string strSql = "update COT_DATOSEQUIPOS_LOG set APROBADO = 1, fecha_actualizacion=getdate() where TRANSACCION = " + intTransaccion + " and SISTEMA = 'APP'"; // Puede haber otra transaccion con el excel?
+                string strSql = "update COT_DATOSEQUIPOS_LOG set APROBADO = 1, fecha_actualizacion=getdate() where TRANSACCION = " + intTransaccion + " and SISTEMA = 'APP'";
 
                 command.CommandText = strSql;
                 int intValida = command.ExecuteNonQuery();
@@ -1048,11 +1046,11 @@ namespace ActualizarDatosEquipo
 
                 command.Connection = connUtil;
 
-                string strSqlAnteriorAPP = "insert into COT_DATOSEQUIPOS_LOG values ("+ intTransaccion.ToString() + ",'" + txtNombreImpresora.Text + "','" + txtMacAddress.Text+ "','" + txtDireccionIp.Text;
+                string strSqlAnteriorAPP = "insert into COT_DATOSEQUIPOS_LOG values (" + intTransaccion.ToString() + ",'" + txtNombreImpresora.Text + "','" + txtMacAddress.Text + "','" + txtDireccionIp.Text;
                 strSqlAnteriorAPP += "','" + txtIdCliente.Text + "','" + txtNumeroAgencia.Text + "','" + txtCentroComercial.Text;
                 strSqlAnteriorAPP += "','" + txtArea.Text + "','" + txtZonaGeografica.Text + "','" + txtAgenciaDepto.Text + "',";
                 strSqlAnteriorAPP += "'" + txtEncargado.Text + "','" + txtCuotaFija.Text + "','" + txtTelefonoEncargado.Text;
-                strSqlAnteriorAPP += "','" + txtVolumenBn.Text + "','" + txtDireccion.Text+ "','" + txtVolumenColor.Text;
+                strSqlAnteriorAPP += "','" + txtVolumenBn.Text + "','" + txtDireccion.Text + "','" + txtVolumenColor.Text;
                 strSqlAnteriorAPP += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'" + txtComentarios.Text + "','APP','" + txtSerie.Text + "', '" + txtNivel.Text + "')";
 
                 command.CommandText = strSqlAnteriorAPP;
@@ -1067,7 +1065,7 @@ namespace ActualizarDatosEquipo
         private void Insertar_DatosAnterioresSCON(int intTransaccion)
         {
             // Obtiene los datos anteriores de SCON
-            string strSql = "select Zona, [Agencia/Depto], Contacto, Telefono, [Dirección] from " + Scon + "[Datos Actuales] where serie = '"+txtSerie.Text+"'";
+            string strSql = "select Zona, [Agencia/Depto], Contacto, Telefono, [Dirección] from " + SconConexion + "[Datos Actuales] where serie = '" + txtSerie.Text + "'";
 
             DataTable dt = new DataTable();
 
@@ -1094,8 +1092,8 @@ namespace ActualizarDatosEquipo
 
                     command.Connection = connUtil;
 
-                    string strSqlAnteriorSCON = "insert into COT_DATOSEQUIPOS_LOG values ("+ intTransaccion.ToString() + ",'','','','','','','','"+dt.Rows[0]["Zona"].ToString()+"','"+dt.Rows[0]["Agencia/Depto"].ToString()+"',";
-                    strSqlAnteriorSCON += "'"+dt.Rows[0]["Contacto"].ToString()+"','','"+dt.Rows[0]["Telefono"].ToString()+"','','"+ dt.Rows[0]["Dirección"].ToString() + "','',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'','SCON','"+txtSerie.Text+"',NULL)";
+                    string strSqlAnteriorSCON = "insert into COT_DATOSEQUIPOS_LOG values (" + intTransaccion.ToString() + ",'','','','','','','','" + dt.Rows[0]["Zona"].ToString() + "','" + dt.Rows[0]["Agencia/Depto"].ToString() + "',";
+                    strSqlAnteriorSCON += "'" + dt.Rows[0]["Contacto"].ToString() + "','','" + dt.Rows[0]["Telefono"].ToString() + "','','" + dt.Rows[0]["Dirección"].ToString() + "','',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'','SCON','" + txtSerie.Text + "',NULL)";
 
                     command.CommandText = strSqlAnteriorSCON;
                     int intValida = command.ExecuteNonQuery();
@@ -1118,16 +1116,16 @@ namespace ActualizarDatosEquipo
 
                 command.Connection = connUtil;
 
-                string strSqlAnteriorSISCON = "insert into COT_DATOSEQUIPOS_LOG values ("+ intTransaccion.ToString() + ",'" + dtDatosAnterior.Rows[0]["nombre_equipo"].ToString() + "','" + dtDatosAnterior.Rows[0]["mac_address"].ToString() + "','" + dtDatosAnterior.Rows[0]["direccion_ip"].ToString();
+                string strSqlAnteriorSISCON = "insert into COT_DATOSEQUIPOS_LOG values (" + intTransaccion.ToString() + ",'" + dtDatosAnterior.Rows[0]["nombre_equipo"].ToString() + "','" + dtDatosAnterior.Rows[0]["mac_address"].ToString() + "','" + dtDatosAnterior.Rows[0]["direccion_ip"].ToString();
                 strSqlAnteriorSISCON += "','" + dtDatosAnterior.Rows[0]["id_equipo_cliente"].ToString() + "','" + dtDatosAnterior.Rows[0]["numero_agencia"].ToString() + "','" + dtDatosAnterior.Rows[0]["centro_comercial"].ToString();
-                strSqlAnteriorSISCON += "','"+dtDatosAnterior.Rows[0]["area"].ToString()+"','"+dtDatosAnterior.Rows[0]["zona_geografica"].ToString()+"','"+dtDatosAnterior.Rows[0]["agencia_depto"].ToString()+"',";
-                strSqlAnteriorSISCON += "'"+dtDatosAnterior.Rows[0]["encargado_equipo"].ToString()+"','"+dtDatosAnterior.Rows[0]["cuota_fija"].ToString()+"','"+dtDatosAnterior.Rows[0]["tel_encargado_equipo"].ToString();
-                strSqlAnteriorSISCON += "','"+dtDatosAnterior.Rows[0]["volumen_bn"].ToString()+"','"+dtDatosAnterior.Rows[0]["direccion_equi_empresa"].ToString()+"','"+dtDatosAnterior.Rows[0]["volumen_color"].ToString();
-                strSqlAnteriorSISCON += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'"+txtComentarios.Text+"','SISCON','"+txtSerie.Text+"','" + dtDatosAnterior.Rows[0]["nivel"].ToString() + "')";
+                strSqlAnteriorSISCON += "','" + dtDatosAnterior.Rows[0]["area"].ToString() + "','" + dtDatosAnterior.Rows[0]["zona_geografica"].ToString() + "','" + dtDatosAnterior.Rows[0]["agencia_depto"].ToString() + "',";
+                strSqlAnteriorSISCON += "'" + dtDatosAnterior.Rows[0]["encargado_equipo"].ToString() + "','" + dtDatosAnterior.Rows[0]["cuota_fija"].ToString() + "','" + dtDatosAnterior.Rows[0]["tel_encargado_equipo"].ToString();
+                strSqlAnteriorSISCON += "','" + dtDatosAnterior.Rows[0]["volumen_bn"].ToString() + "','" + dtDatosAnterior.Rows[0]["direccion_equi_empresa"].ToString() + "','" + dtDatosAnterior.Rows[0]["volumen_color"].ToString();
+                strSqlAnteriorSISCON += "',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'" + txtComentarios.Text + "','SISCON','" + txtSerie.Text + "','" + dtDatosAnterior.Rows[0]["nivel"].ToString() + "')";
 
                 command.CommandText = strSqlAnteriorSISCON;
                 int intValida = command.ExecuteNonQuery();
-                if (intValida==0) {MessageBox.Show("Hay problemas con insertar el dato anterior de SISCON!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error);}
+                if (intValida == 0) { MessageBox.Show("Hay problemas con insertar el dato anterior de SISCON!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error); }
 
                 connUtil.Close();
             }
@@ -1167,7 +1165,12 @@ namespace ActualizarDatosEquipo
         {
             Aplicar_Permisos();
 
-            Consultar_Serie();
+            if (Consultar_SeriesSISCON()) { Consultar_SerieSCON(); }
+            else 
+            { 
+                MessageBox.Show("La serie esta desactiva en SISCON, no es posible actualizarla!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+                Limpiar_Formulario();
+            }
         }
 
         // Evento del boton login
@@ -1204,7 +1207,7 @@ namespace ActualizarDatosEquipo
                 btnLogin.Content = "Login";
                 Departamento = 0;
                 lblnombreusuario.Visibility = Visibility.Hidden;
-                lblareausuario.Visibility = Visibility.Hidden; 
+                lblareausuario.Visibility = Visibility.Hidden;
 
                 Limpiar_Formulario();
 
@@ -1217,7 +1220,7 @@ namespace ActualizarDatosEquipo
         private void Aplicar_Permisos()
         {
             // Si el departamento es soluciones
-            switch (Departamento) 
+            switch (Departamento)
             {
                 case 2:
                     txtCuotaFija.IsEnabled = true;
@@ -1242,7 +1245,7 @@ namespace ActualizarDatosEquipo
                     txtComentarios.IsEnabled = true;
                     //txtDireccion.IsEnabled = true;
                     btnObtenerDireccion.IsEnabled = true;
-                    break;  
+                    break;
             }
         }
 
@@ -1267,8 +1270,8 @@ namespace ActualizarDatosEquipo
                     Insertar_DatosAnterioresAPP(intIdTransaccion);
 
                     // Verifica el departamento para actualizar en SISCON
-                    if (Departamento==13) 
-                    { 
+                    if (Departamento == 13)
+                    {
                         Actualizar_SCON();
                     }
                     else { MessageBox.Show("No tiene permisos para actualizar datos en SCON!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -1296,7 +1299,6 @@ namespace ActualizarDatosEquipo
         private int Actualizar_SISCON(int intTransaccion)
         {
             // Obtiene los datos pendientes de autorizar / actualizar para SISCON
-            //string strSql = "select * from COT_DATOSEQUIPOS_LOG where TRANSACCION = " + intTransaccion.ToString() + " and SERIE = '" + txtSerie.Text + "' and SISTEMA = 'APP'";
             string strSql = "select * from COT_DATOSEQUIPOS_LOG where TRANSACCION = " + intTransaccion.ToString() + " and SISTEMA = 'APP'";
 
             DataTable dt = new DataTable();
@@ -1334,12 +1336,12 @@ namespace ActualizarDatosEquipo
 
                     command.Connection = connUtil;
 
-                    string strSqlSISCON = "update COT_CONTRATOS_DET_DESPACHO set NOMBRE_EQUIPO = '"+ dt.Rows[0]["nombre_impresora"].ToString() + "', MAC_ADDRESS = '"+ dt.Rows[0]["mac_address"].ToString() + "', DIRECCION_IP='"+ dt.Rows[0]["direccion_ip"].ToString() + "',";
-                    strSqlSISCON += "ID_EQUIPO_CLIENTE='"+ dt.Rows[0]["id_cliente"].ToString() + "', NUMERO_AGENCIA='"+dt.Rows[0]["numero_agencia"].ToString()+"',CENTRO_COMERCIAL='"+ dt.Rows[0]["centro_comercial"].ToString() + "',";
-                    strSqlSISCON += "AREA='"+ dt.Rows[0]["area"].ToString() + "', ZONA_GEOGRAFICA='"+ dt.Rows[0]["zona_geografica"].ToString() + "', AGENCIA_DEPTO='"+ dt.Rows[0]["agencia_departamento"].ToString() + "',";
-                    strSqlSISCON += "ENCARGADO_EQUIPO='"+ dt.Rows[0]["encargado"].ToString() + "', CUOTA_FIJA="+ fltCuota.ToString() + ", TEL_ENCARGADO_EQUIPO='"+ dt.Rows[0]["telefono_encargado"].ToString() + "',";
-                    strSqlSISCON += "VOLUMEN_BN="+fltVolumenBN.ToString()+", DIRECCION_EQUI_EMPRESA='"+ dt.Rows[0]["direccion"].ToString() + "',VOLUMEN_COLOR="+ fltVolumenColor.ToString() + ",NIVEL='" + dt.Rows[0]["nivel"].ToString() + "'";
-                    strSqlSISCON += " where NUMERO_SERIE = '"+txtSerie.Text+"' and ESTATUS_ARTICULO = 1";
+                    string strSqlSISCON = "update COT_CONTRATOS_DET_DESPACHO set NOMBRE_EQUIPO = '" + dt.Rows[0]["nombre_impresora"].ToString() + "', MAC_ADDRESS = '" + dt.Rows[0]["mac_address"].ToString() + "', DIRECCION_IP='" + dt.Rows[0]["direccion_ip"].ToString() + "',";
+                    strSqlSISCON += "ID_EQUIPO_CLIENTE='" + dt.Rows[0]["id_cliente"].ToString() + "', NUMERO_AGENCIA='" + dt.Rows[0]["numero_agencia"].ToString() + "',CENTRO_COMERCIAL='" + dt.Rows[0]["centro_comercial"].ToString() + "',";
+                    strSqlSISCON += "AREA='" + dt.Rows[0]["area"].ToString() + "', ZONA_GEOGRAFICA='" + dt.Rows[0]["zona_geografica"].ToString() + "', AGENCIA_DEPTO='" + dt.Rows[0]["agencia_departamento"].ToString() + "',";
+                    strSqlSISCON += "ENCARGADO_EQUIPO='" + dt.Rows[0]["encargado"].ToString() + "', CUOTA_FIJA=" + fltCuota.ToString() + ", TEL_ENCARGADO_EQUIPO='" + dt.Rows[0]["telefono_encargado"].ToString() + "',";
+                    strSqlSISCON += "VOLUMEN_BN=" + fltVolumenBN.ToString() + ", DIRECCION_EQUI_EMPRESA='" + dt.Rows[0]["direccion"].ToString() + "',VOLUMEN_COLOR=" + fltVolumenColor.ToString() + ",NIVEL='" + dt.Rows[0]["nivel"].ToString() + "'";
+                    strSqlSISCON += " where NUMERO_SERIE = '" + txtSerie.Text + "' and ESTATUS_ARTICULO = 1";
 
                     command.CommandText = strSqlSISCON;
                     int intResultado = command.ExecuteNonQuery();
@@ -1349,7 +1351,7 @@ namespace ActualizarDatosEquipo
                     return intResultado;
                 }
             }
-            else { return 0;}
+            else { return 0; }
         }
 
         // Actualizar el registro en SCON
@@ -1363,9 +1365,9 @@ namespace ActualizarDatosEquipo
 
                 command.Connection = connUtil;
 
-                string strSqlSCON = "update " + Scon + "[Datos Actuales] set Zona = '"+txtZonaGeografica.Text+"', [Agencia/Depto] = '"+txtAgenciaDepto.Text+"', Contacto = '"+txtEncargado.Text+"', Telefono = '"+txtTelefonoEncargado.Text+"',";
+                string strSqlSCON = "update " + SconConexion + "[Datos Actuales] set Zona = '" + txtZonaGeografica.Text + "', [Agencia/Depto] = '" + txtAgenciaDepto.Text + "', Contacto = '" + txtEncargado.Text + "', Telefono = '" + txtTelefonoEncargado.Text + "',";
                 strSqlSCON += "[Dirección] = '" + txtDireccion.Text + "', DeptoId = " + cmbDepartamento.SelectedIndex + ", CiudadId=" + cmbCiudad.SelectedIndex + ", Comentario='" + txtComentarios.Text + "   IP: " + txtDireccionIp.Text + "' ";
-                strSqlSCON += "where serie = '"+txtSerie.Text+"'";
+                strSqlSCON += "where serie = '" + txtSerie.Text + "'";
 
                 command.CommandText = strSqlSCON;
                 int intValida = command.ExecuteNonQuery();
@@ -1413,7 +1415,7 @@ namespace ActualizarDatosEquipo
                 txtMacAddress.Text = dt.Rows[0]["mac_address"].ToString();
                 txtMacAddress.IsEnabled = false;
                 txtDireccionIp.Text = dt.Rows[0]["direccion_ip"].ToString();
-                txtDireccionIp.IsEnabled = false;   
+                txtDireccionIp.IsEnabled = false;
                 txtIdCliente.Text = dt.Rows[0]["id_cliente"].ToString();
                 txtIdCliente.IsEnabled = false;
                 txtNumeroAgencia.Text = dt.Rows[0]["numero_agencia"].ToString();
@@ -1423,7 +1425,7 @@ namespace ActualizarDatosEquipo
                 txtArea.Text = dt.Rows[0]["area"].ToString();
                 txtArea.IsEnabled = false;
                 txtZonaGeografica.Text = dt.Rows[0]["zona_geografica"].ToString();
-                txtZonaGeografica.IsEnabled = false;    
+                txtZonaGeografica.IsEnabled = false;
                 txtAgenciaDepto.Text = dt.Rows[0]["agencia_departamento"].ToString();
                 txtAgenciaDepto.IsEnabled = false;
                 txtEncargado.Text = dt.Rows[0]["encargado"].ToString();
@@ -1433,7 +1435,7 @@ namespace ActualizarDatosEquipo
                 txtCuotaFija.Text = dt.Rows[0]["cuota_fija"].ToString();
                 txtCuotaFija.IsEnabled = false;
                 txtVolumenBn.Text = dt.Rows[0]["volumen_bn"].ToString();
-                txtVolumenBn.IsEnabled = false; 
+                txtVolumenBn.IsEnabled = false;
                 txtVolumenColor.Text = dt.Rows[0]["volumen_color"].ToString();
                 txtVolumenColor.IsEnabled = false;
                 txtDireccion.Text = dt.Rows[0]["direccion"].ToString();
@@ -1447,7 +1449,7 @@ namespace ActualizarDatosEquipo
 
                 // Agrega los datos de la bicatora
                 lblSistema.Content = "Sistema: " + dt.Rows[0]["sistema"].ToString();
-                lblSistema.Visibility = Visibility.Visible; 
+                lblSistema.Visibility = Visibility.Visible;
                 lblUsuario.Content = "Usuario: " + dt.Rows[0]["usuario"].ToString();
                 lblUsuario.Visibility = Visibility.Visible;
                 lblFechaRegistro.Content = "Fecha Registro: " + dt.Rows[0]["fecha_registro"].ToString();
@@ -1456,7 +1458,7 @@ namespace ActualizarDatosEquipo
                 lblFechaActual.Visibility = Visibility.Visible;
                 lblTransaccion.Content = "Transacción: " + dt.Rows[0]["transaccion"].ToString();
                 lblTransaccion.Visibility = Visibility.Visible;
-                if (dt.Rows[0]["sistema"].ToString()=="APP")
+                if (dt.Rows[0]["sistema"].ToString() == "APP")
                 {
                     if (Convert.ToBoolean(dt.Rows[0]["aprobado"]))
                     {
@@ -1476,7 +1478,7 @@ namespace ActualizarDatosEquipo
 
                 // Habilita los comentarios del registro
                 lblComentarios.Content = "Este detalle fue obtenido desde la bitácora!";
-                lblComentarios.Visibility = Visibility.Visible; 
+                lblComentarios.Visibility = Visibility.Visible;
 
             }
             else { MessageBox.Show("Se tienen problemas para obtener el dato de la bitácora!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -1492,7 +1494,7 @@ namespace ActualizarDatosEquipo
         // Llena el combo de ciudades desde SCON
         private void Llenar_ComboCiudad(int intCiudad)
         {
-            string strSql = @"select * from " + Scon + "[Ciudades] where deptoid = " + intCiudad.ToString();
+            string strSql = @"select * from " + SconConexion + "[Ciudades] where deptoid = " + intCiudad.ToString();
 
             DataTable dt = new DataTable();
 
@@ -1510,11 +1512,16 @@ namespace ActualizarDatosEquipo
 
             if (dt.Rows.Count > 0)
             {
+                // Limpia el combo
+                cmbCiudad.Items.Clear();
+
                 for (int i = 1; i <= dt.Rows.Count; i++)
                 {
                     ComboBoxItem cmbItem = new ComboBoxItem();
                     cmbItem.Content = dt.Rows[i - 1]["Nombre de Ciudad"].ToString();
                     cmbItem.Tag = Convert.ToInt16(dt.Rows[i - 1]["ciudadid"].ToString());
+
+                    // Asigna los datos al combo
                     cmbCiudad.Items.Add(cmbItem);
                 }
             }
@@ -1523,7 +1530,7 @@ namespace ActualizarDatosEquipo
         // Llena el combo de departamentos desde SCON
         private void Llenar_ComboDepartamento()
         {
-            string strSql = @"select * from " + Scon + "[Depto]";
+            string strSql = @"select * from " + SconConexion + "[Depto]";
 
             DataTable dt = new DataTable();
 
@@ -1543,7 +1550,7 @@ namespace ActualizarDatosEquipo
             {
                 for (int i = 1; i <= dt.Rows.Count; i++)
                 {
-                    cmbDepartamento.Items.Insert(Convert.ToInt32(dt.Rows[i-1]["deptoid"].ToString()), dt.Rows[i-1]["departamento"].ToString());
+                    cmbDepartamento.Items.Insert(Convert.ToInt32(dt.Rows[i - 1]["deptoid"].ToString()), dt.Rows[i - 1]["departamento"].ToString());
                 }
             }
         }
@@ -1575,19 +1582,147 @@ namespace ActualizarDatosEquipo
         }
 
         // Obtiene la serie de SISCON
-        private void Consultar_Serie()
+        private void Consultar_SerieSCON()
         {
             // Valida que la serie tenga datos
-            if (txtSerie.Text != "") 
+            if (txtSerie.Text != "")
+            {
+                string strSql = @"select Serie, Cliente, [Agencia/Depto], [Dirección], Zona, Telefono, Comentario, DeptoId, CiudadId from" + SconConexion + "[Datos Actuales] where serie = '";
+                strSql += txtSerie.Text + "'";
+
+                DataTable dt = new DataTable();
+
+                using (SqlConnection connUtil = new SqlConnection(connStringSISCON))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter(strSql, connUtil))
+                    {
+                        connUtil.Open();
+
+                        da.Fill(dt);
+
+                        connUtil.Close();
+                    }
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    // Coloca datos de cliente y de contrato
+                    lblContrato.Visibility = Visibility.Visible;
+                    lblContrato.Content = "";
+                    lblCliente.Visibility = Visibility.Visible;
+                    lblCliente.Content = dt.Rows[0]["cliente"].ToString();
+
+                    // Rellena el formulario
+                    txtZonaGeografica.Text = dt.Rows[0]["zona"].ToString();
+                    txtAgenciaDepto.Text = dt.Rows[0]["Agencia/Depto"].ToString();
+                    txtDireccion.Text = dt.Rows[0]["Dirección"].ToString();
+                    txtDireccion1.Text = txtDireccion.Text;
+                    txtComentarios.Text = dt.Rows[0]["Comentario"].ToString();
+
+                    // Habilita los objetos
+                    btnActualizar.IsEnabled = true;
+                    btnCancelar.IsEnabled = true;
+                    tabHistorico.IsEnabled = true;
+
+                    // Traslada los datos anteriores de SISCON al objetvo
+                    dtDatosAnterior = Consultar_SeriesSISCON(txtSerie.Text);
+
+                    // Llena el Tab de datos Historicos
+                    Obtener_Historico();
+
+                    // Colocar una nota del registro
+                    lblComentarios.Content = "Registro actual de SCON!";
+                    lblComentarios.Visibility = Visibility.Visible;
+
+                    // Combos de direccion
+                    Llenar_ComboDepartamento();
+                }
+                else
+                {
+                    MessageBox.Show("El número de Serie no esta registrado en SCON!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    Limpiar_Formulario();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("El número de Serie no puede estar en blanco!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                Limpiar_Formulario();
+            }
+        }
+
+        // Consulta las series de SISCON
+        private DataTable Consultar_SeriesSISCON(string strSerie)
+        {
+            string strSql = @"select DET.CONTRATO_NO, ENC.NOMBRE_CLIENTE, DET.NOMBRE_EQUIPO, DET.MAC_ADDRESS, DET.DIRECCION_IP, DET.ID_EQUIPO_CLIENTE, DET.NUMERO_AGENCIA, DET.CENTRO_COMERCIAL, DET.AREA, DET.ZONA_GEOGRAFICA, 
+                                DET.AGENCIA_DEPTO, DET.ENCARGADO_EQUIPO, DET.TEL_ENCARGADO_EQUIPO, DET.CUOTA_FIJA, DET.VOLUMEN_BN, DET.VOLUMEN_COLOR, DET.DIRECCION_EQUI_EMPRESA, DET.NIVEL 
+                                from COT_CONTRATOS_DET_DESPACHO DET, COT_CONTRATOS_ENC ENC
+                                where ENC.CONTRATO_NO = DET.CONTRATO_NO
+                                and DET.NUMERO_SERIE = '";
+            strSql += strSerie + "' and DET.ESTATUS_ARTICULO = 1";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connUtil = new SqlConnection(connStringSISCON))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(strSql, connUtil))
+                {
+                    connUtil.Open();
+
+                    da.Fill(dt);
+
+                    connUtil.Close();
+                }
+            }
+
+            return dt; 
+        }
+
+        // Valida si la serie en SISCON esta activa
+        private bool Consultar_SeriesSISCON()
+        {
+            string strSql = @"select DET.CONTRATO_NO, ENC.NOMBRE_CLIENTE, DET.NOMBRE_EQUIPO, DET.MAC_ADDRESS, DET.DIRECCION_IP, DET.ID_EQUIPO_CLIENTE, DET.NUMERO_AGENCIA, DET.CENTRO_COMERCIAL, DET.AREA, DET.ZONA_GEOGRAFICA, 
+                                DET.AGENCIA_DEPTO, DET.ENCARGADO_EQUIPO, DET.TEL_ENCARGADO_EQUIPO, DET.CUOTA_FIJA, DET.VOLUMEN_BN, DET.VOLUMEN_COLOR, DET.DIRECCION_EQUI_EMPRESA, DET.NIVEL 
+                                from COT_CONTRATOS_DET_DESPACHO DET, COT_CONTRATOS_ENC ENC
+                                where ENC.CONTRATO_NO = DET.CONTRATO_NO
+                                and DET.NUMERO_SERIE = '";
+            strSql += txtSerie.Text + "' and DET.ESTATUS_ARTICULO = 1";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connUtil = new SqlConnection(connStringSISCON))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(strSql, connUtil))
+                {
+                    connUtil.Open();
+
+                    da.Fill(dt);
+
+                    connUtil.Close();
+                }
+            }
+
+            // Si la serie esta desactiva returna false
+            if (dt.Rows.Count == 0) { return false; }
+            else { return true; }
+        }
+
+        // Obtiene la serie de SISCON
+        private void Consultar_SerieSISCON()
+        {
+            // Valida que la serie tenga datos
+            if (txtSerie.Text != "")
             {
                 // Validamos si la serie tiene problemas en SISCON
                 if (Validar_ProblemasSISCON()) { MessageBox.Show("El número de Serie tiene problemas en SISCON, no se actualizarán los datos!", "Datos", MessageBoxButton.OK, MessageBoxImage.Error); }
 
                 string strSql = @"select DET.CONTRATO_NO, ENC.NOMBRE_CLIENTE, DET.NOMBRE_EQUIPO, DET.MAC_ADDRESS, DET.DIRECCION_IP, DET.ID_EQUIPO_CLIENTE, DET.NUMERO_AGENCIA, DET.CENTRO_COMERCIAL, DET.AREA, DET.ZONA_GEOGRAFICA, 
-                            DET.AGENCIA_DEPTO, DET.ENCARGADO_EQUIPO, DET.TEL_ENCARGADO_EQUIPO, DET.CUOTA_FIJA, DET.VOLUMEN_BN, DET.VOLUMEN_COLOR, DET.DIRECCION_EQUI_EMPRESA, DET.NIVEL 
-                            from COT_CONTRATOS_DET_DESPACHO DET, COT_CONTRATOS_ENC ENC
-                            where ENC.CONTRATO_NO = DET.CONTRATO_NO
-                            and DET.NUMERO_SERIE = '";
+                                DET.AGENCIA_DEPTO, DET.ENCARGADO_EQUIPO, DET.TEL_ENCARGADO_EQUIPO, DET.CUOTA_FIJA, DET.VOLUMEN_BN, DET.VOLUMEN_COLOR, DET.DIRECCION_EQUI_EMPRESA, DET.NIVEL 
+                                from COT_CONTRATOS_DET_DESPACHO DET, COT_CONTRATOS_ENC ENC
+                                where ENC.CONTRATO_NO = DET.CONTRATO_NO
+                                and DET.NUMERO_SERIE = '";
                 strSql += txtSerie.Text + "' and DET.ESTATUS_ARTICULO = 1";
 
                 DataTable dt = new DataTable();
