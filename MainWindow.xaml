@@ -88,83 +88,87 @@
             </TabItem>
 
             <TabItem Header="Histórico" Name="tabHistorico" IsEnabled="False">
-                <Grid Name="MCGrid" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                    </Grid.RowDefinitions>
+                <ScrollViewer x:Name="ScrollHistorico" HorizontalScrollBarVisibility="Visible">
+                    <Grid Name="MCGrid" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
 
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="Nombre Impresora" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="Dirección" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="Agencia-Depto." Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="Fecha Registro" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="Sistema" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="5" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="Nombre Impresora" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="Dirección" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="Agencia-Depto." Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="Fecha Registro" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="Sistema" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="5" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
 
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0"></TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2"></TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">S/F</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="4">SISCON</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0"></TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2"></TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">S/F</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="4">SISCON</TextBlock>
 
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0"></TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">CIUDAD</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">9</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">S/F</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="4">SCON</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0"></TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">CIUDAD</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">9</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">S/F</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="4">SCON</TextBlock>
 
-                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="0">IMPRESORA 1</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="2">PRIMER</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="3">20/05/2021</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="3" Grid.Column="4">APP</TextBlock>
-                    <Button Name="boton1" Content="AUTORIZAR" Grid.Row="3" Grid.Column="5"></Button>
-                </Grid>
+                        <TextBlock FontSize="12" Grid.Row="3" Grid.Column="0">IMPRESORA 1</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="3" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="3" Grid.Column="2">PRIMER</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="3" Grid.Column="3">20/05/2021</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="3" Grid.Column="4">APP</TextBlock>
+                        <Button Name="boton1" Content="AUTORIZAR" Grid.Row="3" Grid.Column="5"></Button>
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Pendientes" Name="tabPendientes" IsEnabled="False">
-                <Grid Name="Pendientes" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                    </Grid.RowDefinitions>
+                <ScrollViewer x:Name="ScrollPendientes" HorizontalScrollBarVisibility="Visible">
+                    <Grid Name="Pendientes" Width="750" ShowGridLines="False" Background="#FFE5E5E5" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
 
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="Nombre Impresora" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="Dirección" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="Agencia-Depto." Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="Fecha Registro" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
-                    <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Text="Nombre Impresora" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="Dirección" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="Agencia-Depto." Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Text="Fecha Registro" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Text="Acción" Height="45" VerticalAlignment="Top" Background="DarkBlue" Foreground="WhiteSmoke"/>
 
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0">IMPRESORA 2</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">EDIFICIO EL PATIO</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2">SIN AGENCIA</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">24/05/2021</TextBlock>
-                    <Button Name="boton99" Content="AUTORIZAR" Grid.Row="1" Grid.Column="4"></Button>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="0">IMPRESORA 2</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="1">EDIFICIO EL PATIO</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="2">SIN AGENCIA</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="1" Grid.Column="3">24/05/2021</TextBlock>
+                        <Button Name="boton99" Content="AUTORIZAR" Grid.Row="1" Grid.Column="4"></Button>
 
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0">IMPRESORA 1</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">PRIMER</TextBlock>
-                    <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">20/05/2021</TextBlock>
-                    <Button Name="boton98" Content="AUTORIZAR" Grid.Row="2" Grid.Column="4"></Button>
-                </Grid>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="0">IMPRESORA 1</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="1">7A. AV. 4-20 ZONA 4</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="2">PRIMER</TextBlock>
+                        <TextBlock FontSize="12" Grid.Row="2" Grid.Column="3">20/05/2021</TextBlock>
+                        <Button Name="boton98" Content="AUTORIZAR" Grid.Row="2" Grid.Column="4"></Button>
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Dirección" Name="tabDireccion" IsEnabled="False">
@@ -188,6 +192,58 @@
                     <TextBox x:Name="txtDireccion1" HorizontalAlignment="Left" Margin="80,90,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="650" CharacterCasing="Upper" TabIndex="5"/>
                     <Label x:Name="label104" Content="Dirección Completa: " HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtDireccion2" HorizontalAlignment="Left" Margin="140,130,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="590" Height="75" IsEnabled="False" CharacterCasing="Upper"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Boletas" Name="tabBoletas" IsEnabled="False">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox x:Name= "cmbMesAnio" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" HorizontalAlignment="Left" TabIndex="1" SelectionChanged="cmbBoleta_SelectionChanged">
+                        <ComboBoxItem IsSelected="True">MES-AÑO#BOLETA</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label x:Name="label108" Content="Boleta: " HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblBoleta" Content="" HorizontalAlignment="Left" Margin="70,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label x:Name="label109" Content="Fecha Lectura: " HorizontalAlignment="Left" Margin="180,50,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblFechaLectura" Content="" HorizontalAlignment="Left" Margin="280,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label x:Name="label110" Content="Usuario: " HorizontalAlignment="Left" Margin="460,50,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblUsuarioBoleta" Content="" HorizontalAlignment="Left" Margin="530,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+                    <Label x:Name="label111" Content="Código Lectura 101 " HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                    <Label x:Name="label112" Content="Valor Actual: " HorizontalAlignment="Left" Margin="160,90,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl101Actual" Content="0" HorizontalAlignment="Left" Margin="240,90,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Blue"/>
+                    <Label x:Name="label113" Content="Valor Anterior: " HorizontalAlignment="Left" Margin="290,90,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl101Anterior" Content="0" HorizontalAlignment="Left" Margin="380,90,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Brown"/>
+
+                    <Label x:Name="label120" Content="Código Lectura 105 " HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                    <Label x:Name="label121" Content="Valor Actual: " HorizontalAlignment="Left" Margin="160,130,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl105Actual" Content="0" HorizontalAlignment="Left" Margin="240,130,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Blue"/>
+                    <Label x:Name="label122" Content="Valor Anterior: " HorizontalAlignment="Left" Margin="290,130,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl105Anterior" Content="0" HorizontalAlignment="Left" Margin="380,130,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Brown"/>
+
+                    <Label x:Name="label123" Content="Código Lectura 120 " HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                    <Label x:Name="label124" Content="Valor Actual: " HorizontalAlignment="Left" Margin="160,170,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl120Actual" Content="0" HorizontalAlignment="Left" Margin="240,170,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Blue"/>
+                    <Label x:Name="label126" Content="Valor Anterior: " HorizontalAlignment="Left" Margin="290,170,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl120Anterior" Content="0" HorizontalAlignment="Left" Margin="380,170,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Brown"/>
+
+                    <Label x:Name="label114" Content="Código Lectura 501 " HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                    <Label x:Name="label115" Content="Valor Actual: " HorizontalAlignment="Left" Margin="160,210,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl501Actual" Content="0" HorizontalAlignment="Left" Margin="240,210,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Blue"/>
+                    <Label x:Name="label116" Content="Valor Anterior: " HorizontalAlignment="Left" Margin="290,210,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lbl501Anterior" Content="0" HorizontalAlignment="Left" Margin="380,210,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Brown"/>
+
+                    <Label x:Name="label117" Content="Código Lectura B/N " HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                    <Label x:Name="label118" Content="Valor Actual: " HorizontalAlignment="Left" Margin="160,250,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblBNActual" Content="0" HorizontalAlignment="Left" Margin="240,250,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Blue"/>
+                    <Label x:Name="label119" Content="Valor Anterior: " HorizontalAlignment="Left" Margin="290,250,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblBNAnterior" Content="0" HorizontalAlignment="Left" Margin="380,250,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Brown"/>
+
+                    <Label x:Name="label127" Content="Código Lectura COLOR " HorizontalAlignment="Left" Margin="10,290,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+                    <Label x:Name="label128" Content="Valor Actual: " HorizontalAlignment="Left" Margin="160,290,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblCOLORActual" Content="0" HorizontalAlignment="Left" Margin="240,290,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Blue"/>
+                    <Label x:Name="label129" Content="Valor Anterior: " HorizontalAlignment="Left" Margin="290,290,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblCOLORAnterior" Content="0" HorizontalAlignment="Left" Margin="380,290,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Brown"/>
+
                 </Grid>
             </TabItem>
             

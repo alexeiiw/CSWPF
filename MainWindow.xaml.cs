@@ -42,7 +42,8 @@ namespace ActualizarDatosEquipo
         // Define objetos globales
         DataTable dtDatosAnterior = new DataTable();
 
-        string connStringSISCON = "data source=128.1.200.167;initial catalog=Canella_SISCON;persist security info=True;user id=usrsap;password=C@nella20$";
+        string connStringSISCON = "data source=128.1.200.167;initial catalog=Canella_SISCON;persist security info=True;user id=usrsap;password=C@nella20$"; // producción
+        //string connStringSISCON = "data source=128.1.200.136;initial catalog=Canella_SISCON;persist security info=True;user id=usrsap;password=C@nella20$"; // desarrollo
 
         int intIdTransaccion = 0;
 
@@ -50,7 +51,7 @@ namespace ActualizarDatosEquipo
 
         AutorizaSISCON objAutorizaSISCON = new AutorizaSISCON("", "");
 
-        string strSerie = "3ukrR6F5";
+        string strSerie = "oTDhj9yX";
 
         int Departamento = 0; // 13 Servicio Tecnico, 2 Soluciones
 
@@ -188,6 +189,7 @@ namespace ActualizarDatosEquipo
             btnCancelar.IsEnabled = false;
             tabDireccion.IsEnabled = false;
             tabPendientes.IsEnabled = false;
+            tabBoletas.IsEnabled = false;
 
             // Deshabilita los textbox
             txtNombreImpresora.IsEnabled = false;
@@ -218,7 +220,27 @@ namespace ActualizarDatosEquipo
             lblUsuario.Visibility = Visibility.Hidden;
             lblTransaccion.Visibility = Visibility.Hidden;
 
+            // Oculta labels de boletas
+            lblBoleta.Content = "";
+            lblFechaLectura.Content = "";
+            lblUsuario.Content = "";
+            lbl101Actual.Content = "0";
+            lbl101Anterior.Content = "0";
+            lbl105Actual.Content = "0";
+            lbl105Anterior.Content = "0";
+            lbl120Actual.Content = "0";
+            lbl120Anterior.Content = "0";
+            lblBNActual.Content = "0";
+            lblBNAnterior.Content = "0";
+            lblCOLORActual.Content = "0";
+            lblCOLORAnterior.Content = "0";
+            lbl501Actual.Content = "0";
+            lbl501Anterior.Content = "0";
+            cmbMesAnio.Items.Clear();
+            cmbMesAnio.Items.Insert(0, "MES-AÑO#BOLETA");
+
             // Coloca el foco en el tab de datos
+            btnBuscar.IsEnabled = true;
             tabDatos.Focus();
         }
 
@@ -425,6 +447,56 @@ namespace ActualizarDatosEquipo
             gridRow14.Height = new GridLength(25);
             RowDefinition gridRow15 = new RowDefinition();
             gridRow15.Height = new GridLength(25);
+            RowDefinition gridRow16 = new RowDefinition();
+            gridRow16.Height = new GridLength(25);
+            RowDefinition gridRow17 = new RowDefinition();
+            gridRow17.Height = new GridLength(25);
+            RowDefinition gridRow18 = new RowDefinition();
+            gridRow18.Height = new GridLength(25);
+            RowDefinition gridRow19 = new RowDefinition();
+            gridRow19.Height = new GridLength(25);
+            RowDefinition gridRow20 = new RowDefinition();
+            gridRow20.Height = new GridLength(25);
+            RowDefinition gridRow21 = new RowDefinition();
+            gridRow21.Height = new GridLength(25);
+            RowDefinition gridRow22 = new RowDefinition();
+            gridRow22.Height = new GridLength(25);
+            RowDefinition gridRow23 = new RowDefinition();
+            gridRow23.Height = new GridLength(25);
+            RowDefinition gridRow24 = new RowDefinition();
+            gridRow24.Height = new GridLength(25);
+            RowDefinition gridRow25 = new RowDefinition();
+            gridRow25.Height = new GridLength(25);
+            RowDefinition gridRow26 = new RowDefinition();
+            gridRow26.Height = new GridLength(25);
+            RowDefinition gridRow27 = new RowDefinition();
+            gridRow27.Height = new GridLength(25);
+            RowDefinition gridRow28 = new RowDefinition();
+            gridRow28.Height = new GridLength(25);
+            RowDefinition gridRow29 = new RowDefinition();
+            gridRow29.Height = new GridLength(25);
+            RowDefinition gridRow30 = new RowDefinition();
+            gridRow30.Height = new GridLength(25);
+            RowDefinition gridRow31 = new RowDefinition();
+            gridRow31.Height = new GridLength(25);
+            RowDefinition gridRow32 = new RowDefinition();
+            gridRow32.Height = new GridLength(25);
+            RowDefinition gridRow33 = new RowDefinition();
+            gridRow33.Height = new GridLength(25);
+            RowDefinition gridRow34 = new RowDefinition();
+            gridRow34.Height = new GridLength(25);
+            RowDefinition gridRow35 = new RowDefinition();
+            gridRow35.Height = new GridLength(25);
+            RowDefinition gridRow36 = new RowDefinition();
+            gridRow36.Height = new GridLength(25);
+            RowDefinition gridRow37 = new RowDefinition();
+            gridRow37.Height = new GridLength(25);
+            RowDefinition gridRow38 = new RowDefinition();
+            gridRow38.Height = new GridLength(25);
+            RowDefinition gridRow39 = new RowDefinition();
+            gridRow39.Height = new GridLength(25);
+            RowDefinition gridRow40 = new RowDefinition();
+            gridRow40.Height = new GridLength(25);
 
             DynamicGrid.RowDefinitions.Add(gridRow1);
             DynamicGrid.RowDefinitions.Add(gridRow2);
@@ -441,6 +513,31 @@ namespace ActualizarDatosEquipo
             DynamicGrid.RowDefinitions.Add(gridRow13);
             DynamicGrid.RowDefinitions.Add(gridRow14);
             DynamicGrid.RowDefinitions.Add(gridRow15);
+            DynamicGrid.RowDefinitions.Add(gridRow16);
+            DynamicGrid.RowDefinitions.Add(gridRow17);
+            DynamicGrid.RowDefinitions.Add(gridRow18);
+            DynamicGrid.RowDefinitions.Add(gridRow19);
+            DynamicGrid.RowDefinitions.Add(gridRow20);
+            DynamicGrid.RowDefinitions.Add(gridRow21);
+            DynamicGrid.RowDefinitions.Add(gridRow22);
+            DynamicGrid.RowDefinitions.Add(gridRow23);
+            DynamicGrid.RowDefinitions.Add(gridRow24);
+            DynamicGrid.RowDefinitions.Add(gridRow25);
+            DynamicGrid.RowDefinitions.Add(gridRow26);
+            DynamicGrid.RowDefinitions.Add(gridRow27);
+            DynamicGrid.RowDefinitions.Add(gridRow28);
+            DynamicGrid.RowDefinitions.Add(gridRow29);
+            DynamicGrid.RowDefinitions.Add(gridRow30);
+            DynamicGrid.RowDefinitions.Add(gridRow31);
+            DynamicGrid.RowDefinitions.Add(gridRow32);
+            DynamicGrid.RowDefinitions.Add(gridRow33);
+            DynamicGrid.RowDefinitions.Add(gridRow34);
+            DynamicGrid.RowDefinitions.Add(gridRow35);
+            DynamicGrid.RowDefinitions.Add(gridRow36);
+            DynamicGrid.RowDefinitions.Add(gridRow37);
+            DynamicGrid.RowDefinitions.Add(gridRow38);
+            DynamicGrid.RowDefinitions.Add(gridRow39);
+            DynamicGrid.RowDefinitions.Add(gridRow40);
 
             // Add first column header    
             TextBlock txtBlock1 = new TextBlock();
@@ -641,7 +738,7 @@ namespace ActualizarDatosEquipo
             }
 
             // Display grid into a Window    
-            tabPendientes.Content = DynamicGrid;
+            ScrollPendientes.Content = DynamicGrid;
         }
 
         // Obtiene los registros de los cambios historicos para los equipos
@@ -704,6 +801,56 @@ namespace ActualizarDatosEquipo
             gridRow14.Height = new GridLength(25);
             RowDefinition gridRow15 = new RowDefinition();
             gridRow15.Height = new GridLength(25);
+            RowDefinition gridRow16 = new RowDefinition();
+            gridRow16.Height = new GridLength(25);
+            RowDefinition gridRow17 = new RowDefinition();
+            gridRow17.Height = new GridLength(25);
+            RowDefinition gridRow18 = new RowDefinition();
+            gridRow18.Height = new GridLength(25);
+            RowDefinition gridRow19 = new RowDefinition();
+            gridRow19.Height = new GridLength(25);
+            RowDefinition gridRow20 = new RowDefinition();
+            gridRow20.Height = new GridLength(25);
+            RowDefinition gridRow21 = new RowDefinition();
+            gridRow21.Height = new GridLength(25);
+            RowDefinition gridRow22 = new RowDefinition();
+            gridRow22.Height = new GridLength(25);
+            RowDefinition gridRow23 = new RowDefinition();
+            gridRow23.Height = new GridLength(25);
+            RowDefinition gridRow24 = new RowDefinition();
+            gridRow24.Height = new GridLength(25);
+            RowDefinition gridRow25 = new RowDefinition();
+            gridRow25.Height = new GridLength(25);
+            RowDefinition gridRow26 = new RowDefinition();
+            gridRow26.Height = new GridLength(25);
+            RowDefinition gridRow27 = new RowDefinition();
+            gridRow27.Height = new GridLength(25);
+            RowDefinition gridRow28 = new RowDefinition();
+            gridRow28.Height = new GridLength(25);
+            RowDefinition gridRow29 = new RowDefinition();
+            gridRow29.Height = new GridLength(25);
+            RowDefinition gridRow30 = new RowDefinition();
+            gridRow30.Height = new GridLength(25);
+            RowDefinition gridRow31 = new RowDefinition();
+            gridRow31.Height = new GridLength(25);
+            RowDefinition gridRow32 = new RowDefinition();
+            gridRow32.Height = new GridLength(25);
+            RowDefinition gridRow33 = new RowDefinition();
+            gridRow33.Height = new GridLength(25);
+            RowDefinition gridRow34 = new RowDefinition();
+            gridRow34.Height = new GridLength(25);
+            RowDefinition gridRow35 = new RowDefinition();
+            gridRow35.Height = new GridLength(25);
+            RowDefinition gridRow36 = new RowDefinition();
+            gridRow36.Height = new GridLength(25);
+            RowDefinition gridRow37 = new RowDefinition();
+            gridRow37.Height = new GridLength(25);
+            RowDefinition gridRow38 = new RowDefinition();
+            gridRow38.Height = new GridLength(25);
+            RowDefinition gridRow39 = new RowDefinition();
+            gridRow39.Height = new GridLength(25);
+            RowDefinition gridRow40 = new RowDefinition();
+            gridRow40.Height = new GridLength(25);
 
             DynamicGrid.RowDefinitions.Add(gridRow1);
             DynamicGrid.RowDefinitions.Add(gridRow2);
@@ -720,6 +867,31 @@ namespace ActualizarDatosEquipo
             DynamicGrid.RowDefinitions.Add(gridRow13);
             DynamicGrid.RowDefinitions.Add(gridRow14);
             DynamicGrid.RowDefinitions.Add(gridRow15);
+            DynamicGrid.RowDefinitions.Add(gridRow16);
+            DynamicGrid.RowDefinitions.Add(gridRow17);
+            DynamicGrid.RowDefinitions.Add(gridRow18);
+            DynamicGrid.RowDefinitions.Add(gridRow19);
+            DynamicGrid.RowDefinitions.Add(gridRow20);
+            DynamicGrid.RowDefinitions.Add(gridRow21);
+            DynamicGrid.RowDefinitions.Add(gridRow22);
+            DynamicGrid.RowDefinitions.Add(gridRow23);
+            DynamicGrid.RowDefinitions.Add(gridRow24);
+            DynamicGrid.RowDefinitions.Add(gridRow25);
+            DynamicGrid.RowDefinitions.Add(gridRow26);
+            DynamicGrid.RowDefinitions.Add(gridRow27);
+            DynamicGrid.RowDefinitions.Add(gridRow28);
+            DynamicGrid.RowDefinitions.Add(gridRow29);
+            DynamicGrid.RowDefinitions.Add(gridRow30);
+            DynamicGrid.RowDefinitions.Add(gridRow31);
+            DynamicGrid.RowDefinitions.Add(gridRow32);
+            DynamicGrid.RowDefinitions.Add(gridRow33);
+            DynamicGrid.RowDefinitions.Add(gridRow34);
+            DynamicGrid.RowDefinitions.Add(gridRow35);
+            DynamicGrid.RowDefinitions.Add(gridRow36);
+            DynamicGrid.RowDefinitions.Add(gridRow37);
+            DynamicGrid.RowDefinitions.Add(gridRow38);
+            DynamicGrid.RowDefinitions.Add(gridRow39);
+            DynamicGrid.RowDefinitions.Add(gridRow40);
 
             // Add first column header    
             TextBlock txtBlock1 = new TextBlock();
@@ -967,7 +1139,7 @@ namespace ActualizarDatosEquipo
             }
 
             // Display grid into a Window    
-            tabHistorico.Content = DynamicGrid;
+            ScrollHistorico.Content = DynamicGrid;
         }
 
         // Evento del boton limpiar
@@ -1065,7 +1237,7 @@ namespace ActualizarDatosEquipo
         private void Insertar_DatosAnterioresSCON(int intTransaccion)
         {
             // Obtiene los datos anteriores de SCON
-            string strSql = "select Zona, [Agencia/Depto], Contacto, Telefono, [Dirección] from " + SconConexion + "[Datos Actuales] where serie = '" + txtSerie.Text + "'";
+            string strSql = "select Serie, Cliente, [Agencia/Depto], [Dirección], Zona, Telefono, Comentario, DeptoId, CiudadId, DecisionMaker from " + SconConexion + "[Datos Actuales] where serie = '" + txtSerie.Text + "'";
 
             DataTable dt = new DataTable();
 
@@ -1093,7 +1265,7 @@ namespace ActualizarDatosEquipo
                     command.Connection = connUtil;
 
                     string strSqlAnteriorSCON = "insert into COT_DATOSEQUIPOS_LOG values (" + intTransaccion.ToString() + ",'','','','','','','','" + dt.Rows[0]["Zona"].ToString() + "','" + dt.Rows[0]["Agencia/Depto"].ToString() + "',";
-                    strSqlAnteriorSCON += "'" + dt.Rows[0]["Contacto"].ToString() + "','','" + dt.Rows[0]["Telefono"].ToString() + "','','" + dt.Rows[0]["Dirección"].ToString() + "','',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'','SCON','" + txtSerie.Text + "',NULL)";
+                    strSqlAnteriorSCON += "'" + dt.Rows[0]["DecisionMaker"].ToString() + "','','" + dt.Rows[0]["Telefono"].ToString() + "','','" + dt.Rows[0]["Dirección"].ToString() + "','',GETDATE(),NULL,'" + txtUsuario.Text + "',0,'" + dt.Rows[0]["Comentario"].ToString() + "','SCON','" + txtSerie.Text + "',NULL)";
 
                     command.CommandText = strSqlAnteriorSCON;
                     int intValida = command.ExecuteNonQuery();
@@ -1365,7 +1537,7 @@ namespace ActualizarDatosEquipo
 
                 command.Connection = connUtil;
 
-                string strSqlSCON = "update " + SconConexion + "[Datos Actuales] set Zona = '" + txtZonaGeografica.Text + "', [Agencia/Depto] = '" + txtAgenciaDepto.Text + "', Contacto = '" + txtEncargado.Text + "', Telefono = '" + txtTelefonoEncargado.Text + "',";
+                string strSqlSCON = "update " + SconConexion + "[Datos Actuales] set Zona = '" + txtZonaGeografica.Text + "', [Agencia/Depto] = '" + txtAgenciaDepto.Text + "', DecisionMaker = '" + txtEncargado.Text + "', Telefono = '" + txtTelefonoEncargado.Text + "',";
                 strSqlSCON += "[Dirección] = '" + txtDireccion.Text + "', DeptoId = " + cmbDepartamento.SelectedIndex + ", CiudadId=" + cmbCiudad.SelectedIndex + ", Comentario='" + txtComentarios.Text + "   IP: " + txtDireccionIp.Text + "' ";
                 strSqlSCON += "where serie = '" + txtSerie.Text + "'";
 
@@ -1485,6 +1657,93 @@ namespace ActualizarDatosEquipo
 
         }
 
+
+        // Evento para obtener el detalle de la boleta
+        private void Llenar_DetalleBoleta(string strBoleta)
+        {
+            string strSql = @"select det.Num_Documento, det.CodigoLect, det.ValorContador, det.ValorContadorAnt, cab.fechalect, cab.id_usuario
+                            from lecturas.dbo.tbldet_lectura det, Lecturas.dbo.Tbl_Lectura cab 
+                            where cab.Num_Documento = det.Num_Documento 
+                            and det.num_documento = '" + strBoleta + "'";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connUtil = new SqlConnection(connStringSISCON))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(strSql, connUtil))
+                {
+                    connUtil.Open();
+
+                    da.Fill(dt);
+
+                    connUtil.Close();
+                }
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                // Llena datos de cabecera
+                lblBoleta.Content = strBoleta;
+                lblFechaLectura.Content = dt.Rows[0]["fechalect"].ToString();
+                lblUsuarioBoleta.Content = dt.Rows[0]["id_usuario"].ToString();
+
+                // Llena el detalle
+                for (int i = 1; i <= dt.Rows.Count; i++)
+                {
+                    switch (dt.Rows[i - 1]["CodigoLect"].ToString())
+                    {
+                        case "101":
+                            lbl101Actual.Content = dt.Rows[i - 1]["ValorContador"].ToString();
+                            lbl101Anterior.Content = dt.Rows[i - 1]["ValorContadorAnt"].ToString();
+                            break;
+
+                        case "105":
+                            lbl105Actual.Content = dt.Rows[i - 1]["ValorContador"].ToString();
+                            lbl105Anterior.Content = dt.Rows[i - 1]["ValorContadorAnt"].ToString();
+                            break;
+
+                        case "120":
+                            lbl120Actual.Content = dt.Rows[i - 1]["ValorContador"].ToString();
+                            lbl120Anterior.Content = dt.Rows[i - 1]["ValorContadorAnt"].ToString();
+                            break;
+
+                        case "501":
+                            lbl501Actual.Content = dt.Rows[i - 1]["ValorContador"].ToString();
+                            lbl501Anterior.Content = dt.Rows[i - 1]["ValorContadorAnt"].ToString();
+                            break;
+
+                        case "B/N":
+                            lblBNActual.Content = dt.Rows[i - 1]["ValorContador"].ToString();
+                            lblBNAnterior.Content = dt.Rows[i - 1]["ValorContadorAnt"].ToString();
+                            break;
+
+                        case "COLOR":
+                            lblCOLORActual.Content = dt.Rows[i - 1]["ValorContador"].ToString();
+                            lblCOLORAnterior.Content = dt.Rows[i - 1]["ValorContadorAnt"].ToString();
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        // Evento del combo de boletas
+        private void cmbBoleta_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (cmbMesAnio.Items.Count > 1)
+            {
+                if (cmbMesAnio.SelectedItem.ToString() != "NO HAY BOLETAS PARA LA SERIE")
+                {
+                    string strBoleta = cmbMesAnio.SelectedItem.ToString().Substring(cmbMesAnio.SelectedItem.ToString().IndexOf("#"), (cmbMesAnio.SelectedItem.ToString().Length -
+                        cmbMesAnio.SelectedItem.ToString().IndexOf("#")));
+                    strBoleta = strBoleta.Replace("#", "");
+                    Llenar_DetalleBoleta(strBoleta);
+                }
+            }
+        }
+
         // Evento del combo departamento
         private void cmbDepartamento_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -1525,6 +1784,37 @@ namespace ActualizarDatosEquipo
                     cmbCiudad.Items.Add(cmbItem);
                 }
             }
+        }
+
+        // Llena el combo de las boletas
+        private void LLenar_ComboBoletas()
+        {
+            string strSql = @"select top 3 datename(MONTH, dateadd(month, MONTH(FechaLect),-1)) + '-' + convert(varchar(4), YEAR(fechalect)) + '#' + Num_Documento as MesAnio, FechaLect, Num_Documento 
+                            from Lecturas.dbo.tbl_lectura 
+                            where serie = '";
+            strSql += txtSerie.Text + "' order by FechaLect desc";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connUtil = new SqlConnection(connStringSISCON))
+            {
+                using (SqlDataAdapter da = new SqlDataAdapter(strSql, connUtil))
+                {
+                    connUtil.Open();
+
+                    da.Fill(dt);
+
+                    connUtil.Close();
+                }
+            }
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 1; i <= dt.Rows.Count; i++)
+                {
+                    cmbMesAnio.Items.Insert(i, dt.Rows[i - 1]["MesAnio"].ToString());
+                }
+            }
+            else { cmbMesAnio.Items.Insert(0, "NO HAY BOLETAS PARA LA SERIE");  }
         }
 
         // Llena el combo de departamentos desde SCON
@@ -1587,7 +1877,7 @@ namespace ActualizarDatosEquipo
             // Valida que la serie tenga datos
             if (txtSerie.Text != "")
             {
-                string strSql = @"select Serie, Cliente, [Agencia/Depto], [Dirección], Zona, Telefono, Comentario, DeptoId, CiudadId from" + SconConexion + "[Datos Actuales] where serie = '";
+                string strSql = @"select Serie, Cliente, [Agencia/Depto], [Dirección], Zona, Telefono, Comentario, DeptoId, CiudadId, DecisionMaker from " + SconConexion + "[Datos Actuales] where serie = '";
                 strSql += txtSerie.Text + "'";
 
                 DataTable dt = new DataTable();
@@ -1617,12 +1907,15 @@ namespace ActualizarDatosEquipo
                     txtAgenciaDepto.Text = dt.Rows[0]["Agencia/Depto"].ToString();
                     txtDireccion.Text = dt.Rows[0]["Dirección"].ToString();
                     txtDireccion1.Text = txtDireccion.Text;
+                    txtTelefonoEncargado.Text = dt.Rows[0]["Telefono"].ToString();
+                    txtEncargado.Text = dt.Rows[0]["DecisionMaker"].ToString();
                     txtComentarios.Text = dt.Rows[0]["Comentario"].ToString();
 
                     // Habilita los objetos
                     btnActualizar.IsEnabled = true;
                     btnCancelar.IsEnabled = true;
                     tabHistorico.IsEnabled = true;
+                    tabBoletas.IsEnabled = true;    
 
                     // Traslada los datos anteriores de SISCON al objetvo
                     dtDatosAnterior = Consultar_SeriesSISCON(txtSerie.Text);
@@ -1634,8 +1927,14 @@ namespace ActualizarDatosEquipo
                     lblComentarios.Content = "Registro actual de SCON!";
                     lblComentarios.Visibility = Visibility.Visible;
 
+                    // Deshabilita el boton de buscar
+                    btnBuscar.IsEnabled = false;
+
                     // Combos de direccion
                     Llenar_ComboDepartamento();
+
+                    // Llena el combo de boletas
+                    LLenar_ComboBoletas();
                 }
                 else
                 {
