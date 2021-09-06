@@ -51,7 +51,7 @@ namespace ActualizarDatosEquipo
 
         AutorizaSISCON objAutorizaSISCON = new AutorizaSISCON("", "");
 
-        string strSerie = "oTDhj9yX";
+        string strSerie = "gHHYH5nB";
 
         int Departamento = 0; // 13 Servicio Tecnico, 2 Soluciones
 
@@ -1538,7 +1538,7 @@ namespace ActualizarDatosEquipo
                 command.Connection = connUtil;
 
                 string strSqlSCON = "update " + SconConexion + "[Datos Actuales] set Zona = '" + txtZonaGeografica.Text + "', [Agencia/Depto] = '" + txtAgenciaDepto.Text + "', DecisionMaker = '" + txtEncargado.Text + "', Telefono = '" + txtTelefonoEncargado.Text + "',";
-                strSqlSCON += "[Dirección] = '" + txtDireccion.Text + "', DeptoId = " + cmbDepartamento.SelectedIndex + ", CiudadId=" + cmbCiudad.SelectedIndex + ", Comentario='" + txtComentarios.Text + "   IP: " + txtDireccionIp.Text + "' ";
+                strSqlSCON += "[Dirección] = '" + txtDireccion.Text + "', DeptoId = " + cmbDepartamento.SelectedIndex + ", CiudadId=" + ((ComboBoxItem)cmbCiudad.SelectedItem).Tag.ToString() + ", Comentario='" + txtComentarios.Text + "   IP: " + txtDireccionIp.Text + "' ";
                 strSqlSCON += "where serie = '" + txtSerie.Text + "'";
 
                 command.CommandText = strSqlSCON;
